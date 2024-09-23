@@ -1,0 +1,138 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('bg.png'); /* Use url() to specify the image */
+    background-size: cover; /* Make the image cover the whole area */
+    background-position: center; /* Center the background image */
+    position: relative; /* Ensure body can be used for fixed positioning */
+}
+
+#logo-banner {
+    width: 100%; /* Make the logo responsive */
+    max-width: 400px; /* Limit the maximum width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space between the logo and the title */
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative; /* Allow absolute positioning of children */
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background for better contrast */
+    border-radius: 10px; /* Optional: Rounded corners */
+    padding: 20px; /* Optional: Add padding */
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px; /* Space between the heading and the game board */
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(7, 120px);
+    grid-gap: 10px;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically if needed */
+}
+
+.card {
+    width: 120px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5f5f5f;
+    border-color: #000000;
+    cursor: pointer;
+    font-size: 2em;
+    text-align: center;
+    position: relative;
+    transition: background-color 0.3s ease;
+    padding: 0; 
+    box-sizing: border-box; /* Ensure padding does not affect width and height */
+}
+
+.card.flipped {
+    background-color: #fafafa;
+}
+
+.card-content {
+    font-size: 2em;
+}
+
+.card-number {
+    margin-top: 5px; /* Space between card and number */
+    font-size: 3em;
+    color: rgb(0, 0, 0);
+    display: block; /* Ensure number is displayed below the card */
+}
+
+/* Button styling */
+#button-group {
+    position: fixed; /* Fixed positioning to stay at the bottom left of the screen */
+    bottom: 20px; /* Distance from the bottom */
+    left: 20px; /* Distance from the left */
+    display: flex; /* Use flexbox to arrange buttons */
+    gap: 10px; /* Space between buttons */
+}
+
+.buttons {
+    padding: 10px 15px; /* Padding for button */
+    font-size: 16px; /* Font size */
+    background-color: #4CAF50; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    z-index: 1000; /* High z-index to ensure visibility */
+}
+
+.buttons:hover {
+    background-color: #45a049; /* Darker shade on hover */
+}
+
+/* Modal styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Center the modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Modal width */
+    max-width: 500px; /* Limit modal width */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ペア探しゲーム</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <img src="logo.png" alt="Logo" id="logo-banner"> <!-- Add this line -->
+        <h1>ペア探しゲーム</h1>
+        
+        <div id="game-board"></div>
+        <div id='button-group'>
+            <button id="settings-button" class="buttons">設定</button>
+            <button id="rules-button" class="buttons">ゲームのルール</button>
+        </div>
+
+    </div>
+  <!-- Modal for settings -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-settings">&times;</span>
+            <h2>設定</h2>
+            <label for="numPairsInput">ペアの数:</label>
+            <input type="number" id="numPairsInput"  value="7">
+            <button id="save-settings">保存</button>
+        </div>
+    </div>
+    <!-- Modal for the rules -->
+    <div id="rules-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-rules">&times;</span>
+            <h2>ゲームのルール</h2>
+            <p>みんなで順番に2つの数字を言います。</p>
+            <p>最初の人は適当に2つの数字を選んで大丈夫です。選んだ数字に対応するカードがめくられて、全員がその絵を覚えます。</p>
+            <p>次の人からも順番に2つの数字を言って、絵がペアになるかどうかを試します。</p>
+            <p>目標は、2枚のカードを同じ絵で揃えることです。</p>
+        </div>
+    </div>
+
+    <script src="scriptRandom.js"></script>
+</body>
+</html>
