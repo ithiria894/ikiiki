@@ -1,6 +1,10 @@
 let flippedCards = [];
 let matchedPairs = 0;
 let num_Pairs = 7; // Default number of pairs
+let startTime; // Variable to hold the start time
+let timerInterval; // Variable to hold the timer interval
+let elapsedTime = 0; // Variable to hold elapsed time in seconds
+let timerStarted = false; // New variable to track if the timer has started
 
 const contentPool = [
     '🍎', '🍌', '🍇', '🍉', '🍓', '🍒', '🍑', '🍍', 
@@ -72,10 +76,24 @@ function flipCard(cardElement, cardsArray) {
         cardContentElement.innerHTML = cardsArray[cardIndex].content;
         flippedCards.push(cardElement);
 
+        // Start timer if this is the first card being flipped and the timer hasn't started yet
+        if (flippedCards.length === 1 && !timerStarted) {
+            startTimer();
+        }
+
         if (flippedCards.length === 2) {
             checkForMatch(cardsArray);
         }
     }
+}
+
+function startTimer() {
+    startTime = Date.now(); // Set the start time
+    timerStarted = true; // Mark that the timer has started
+    console.log("started timer at ", startTime);
+    timerInterval = setInterval(() => {
+        elapsedTime = Math.floor((Date.now() - startTime) / 1000); // Calculate elapsed time in seconds
+    }, 1000);
 }
 
 function checkForMatch(cardsArray) {
@@ -89,8 +107,13 @@ function checkForMatch(cardsArray) {
         flippedCards = [];
 
         if (matchedPairs === cardsArray.length / 2) {
+            clearInterval(timerInterval); // Stop the timer
             setTimeout(() => {
-                alert('おめでとうございます！！！！ゲーム終わりました～～～～');
+                const minutes = Math.floor(elapsedTime / 60);
+                const seconds = elapsedTime % 60;
+
+                alert(`おめでとうございます！！！！ゲーム終わりました～～～～\n所要時間: ${minutes} 分 ${seconds} 秒`);
+
             }, 300);
         }
     } else {
@@ -128,6 +151,8 @@ saveSettingsButton.onclick = function() {
     num_Pairs = parseInt(numPairsInput.value);
     matchedPairs = 0;  // Reset matched pairs
     flippedCards = []; // Reset flipped cards
+    elapsedTime = 0;   // Reset elapsed time
+    timerStarted = false; // Reset timer started flag
     const gameBoard = document.getElementById('game-board');
     gameBoard.innerHTML = ''; // Clear existing board
     createBoard(); // Create a new board
